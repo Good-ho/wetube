@@ -5,11 +5,11 @@ Clone Coding with Nodejs and JavaScript
 ## Pages
 
 - [ ] Home
-- [ ] Join
-- [ ] Login
-- [ ] Search
+- [x] Join
+- [x] Login
+- [x] Search
 - [ ] UserDetail
-- [ ] Edit Profile
+- [x] Edit Profile
 - [ ] Change Password
 - [ ] Upload
 - [ ] Video Detail
