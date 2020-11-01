@@ -10,6 +10,7 @@ export const search = (req, res) => {
     const {query:{term : searchingBy}} = req;
     res.render("search", {pageTitle:"Search", searchingBy, videos})
 };
+
 export const upload = (req, res) => res.render("upload", {pageTitle:"Uplaod"});
 export const videoDetail = (req, res) => res.render("videoDetail", {pageTitle:"VideoDetail"});
 export const editVideo = (req, res) => res.render("editVideo", {pageTitle:"editVideo"});
