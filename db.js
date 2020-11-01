@@ -4,7 +4,7 @@ export const videos = [
         title:"Video awesome",
         description: "This is something dummy one",
         views:24,
-        videoFile:"https://archive.org/details/BigBuckBunny_124",
+        videoFile:"https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
         creator:{
             id:1212,
             name:"ho",
@@ -17,7 +17,7 @@ export const videos = [
         title:"Video nice",
         description: "This is something dummy two",
         views:24,
-        videoFile:"https://archive.org/details/BigBuckBunny_124",
+        videoFile:"https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
         creator:{
             id:1212,
             name:"ho",
@@ -30,7 +30,7 @@ export const videos = [
         title:"Video perfect",
         description: "This is something dummy three",
         views:24,
-        videoFile:"https://archive.org/details/BigBuckBunny_124",
+        videoFile:"https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
         creator:{
             id:1212,
             name:"ho",
