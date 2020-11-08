@@ -6,10 +6,9 @@ const multerVideo = multer({ dest: "uploads/videos/" });
 export const localMiddleware = (req, res, next) => {
   res.locals.siteName = "WeTube";
   res.locals.routes = routes;
-  res.locals.user = {
-    isAuthenticated: false,
-    id: 1,
-  };
+  // user 가 존재하지 않을 경우 null 넘겨줌.
+  res.locals.user = req.user || null;
+  console.log(req.user);
   next();
 };
 
