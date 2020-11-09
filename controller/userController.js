@@ -81,6 +81,47 @@ export const postGithubLogin = (req, res) => {
   res.redirect(routes.home);
 };
 
+export const facebookLoginCallback = async (
+  accessToken,
+  refreshToken,
+  profile,
+  cb
+) => {
+  console.log(accessToken, refreshToken, profile, cb);
+  // const {
+  //   _json: { id, avatar_url, name, email },
+  // } = profile;
+  // try {
+  //   const user = await User.findOne({ email });
+
+  //   if (user) {
+  //     // 이미 가입한 계정이고, github로 추가 인증한거면 user update해주자.
+  //     // 기존 email과 git email이 동일한 거면 동일 계정이므로 user model에 정의해둔 githubId 정보를 write하자.a1
+  //     user.facebookId = id;
+  //     user.save();
+  //     // return cb의미는 첫 번째 인자는 error를 의미하므로, 로그인 성공시 null
+  //     // 두번째 인자는 user
+  //     return cb(null, user);
+  //   } else {
+  //     const newUser = await User.create({
+  //       email,
+  //       name,
+  //       facebookId: id,
+  //       avatarUrl: avatar_url,
+  //     });
+  //     return cb(null, newUser);
+  //   }
+  // } catch (error) {
+  //   return cb(error);
+  // }
+};
+
+export const facebookLogin = passport.authenticate("facebook");
+
+export const postFacebookLogin = (req, res) => {
+  res.redirect(routes.home);
+};
+
 export const logout = (req, res) => {
   req.logout();
   res.redirect(routes.home);
@@ -90,8 +131,18 @@ export const getMe = (req, res) => {
   res.render("userDetail", { pageTitle: "userDetail", user: req.user });
 };
 
-export const userDetail = (req, res) =>
-  res.render("userDetail", { pageTitle: "userDetail" });
+export const userDetail = async (req, res) => {
+  const {
+    params: { id },
+  } = req;
+  try {
+    const user = await User.findById(id);
+    res.render("userDetail", { pageTitle: "userDetail", user });
+  } catch (error) {
+    res.redirect(routes.home);
+  }
+};
+
 export const editProfile = (req, res) =>
   res.render("editProfile", { pageTitle: "editProfile" });
 export const changePassword = (req, res) =>
