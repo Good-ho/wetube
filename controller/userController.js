@@ -25,7 +25,7 @@ export const postJoin = async (req, res, next) => {
       await User.register(user, password);
       next();
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       res.redirect(routes.home);
     }
   }
@@ -87,7 +87,7 @@ export const facebookLoginCallback = async (
   profile,
   cb
 ) => {
-  console.log(accessToken, refreshToken, profile, cb);
+  // console.log(accessToken, refreshToken, profile, cb);
 };
 
 export const facebookLogin = passport.authenticate("facebook");
@@ -108,7 +108,7 @@ export const naverLoginCallback = async (
   profile,
   cb
 ) => {
-  console.log(accessToken, refreshToken, profile, cb);
+  // console.log(accessToken, refreshToken, profile, cb);
   const {
     _json: { id, profile_image: avatarUrl, nickname: name, email },
   } = profile;
@@ -151,7 +151,8 @@ export const userDetail = async (req, res) => {
     params: { id },
   } = req;
   try {
-    const user = await User.findById(id);
+    const user = await User.findById(id).populate("videos");
+    console.log(user);
     res.render("userDetail", { pageTitle: "userDetail", user });
   } catch (error) {
     res.redirect(routes.home);
@@ -191,7 +192,7 @@ export const postChangePassword = async (req, res) => {
     if (newPassword !== newPasswordV) {
       res.status(400);
       res.redirect(`/users${routes.changePassword}`);
-      console.log("not match password");
+      // console.log("not match password");
       return;
     }
     await req.user.changePassword(oldPassword, newPassword);

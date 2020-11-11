@@ -9,7 +9,7 @@ export const localMiddleware = (req, res, next) => {
   res.locals.routes = routes;
   // user 가 존재하지 않을 경우 null 넘겨줌.
   res.locals.loggedUser = req.user || null;
-  console.log(req.user);
+  // console.log(req.user);
   next();
 };
 
