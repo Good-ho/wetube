@@ -33,30 +33,24 @@
     }
   }
   .video__comments {
-    margin-top: 25px;
-    text-align: center;
-    .video__comment--number {
-      font-size: 18px;
+    margin-top: 40px;
+    #jsCommentNumber {
+      font-size: 17px;
+      font-weight: bolder;
     }
     .add__comment {
-      margin-top: 25px;
       width: 100%;
-      input {
-        width: 100%;
-      }
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
-    .video__comments-list {
-      margin-top: 50px;
-      li {
-        background-color: #3498db;
-        color: white;
-        padding: 15px;
-        border-radius: 20px;
-        border-bottom-left-radius: 0px;
-        &:not(:last-child) {
-          margin-bottom: 15px;
-        }
-      }
+    .add__comment input {
+      width: 100%;
+      max-width: 500px;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+        rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    }
+    .add__comment input:focus {
+      box-shadow: $dark-blue 6px 2px 16px 0px, $dark-blue -6px -2px 16px 0px;
     }
   }
 }

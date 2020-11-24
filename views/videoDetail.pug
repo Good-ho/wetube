@@ -1,5 +1,6 @@
 extends layouts/main.pug
 include mixins/videoPlayer.pug
+include mixins/comment.pug
 
 block content
     .video-detail__container
@@ -21,18 +22,26 @@ block content
                 |Upload by 
                 a(href=routes.userDetail(video.creator.id) )=video.creator.name
         .video__comments
-            if video.comments.length === 1
+            if comments.length === 1
                 span.video__comment--number
                     span#jsCommentNumber 1
                     |   comment
             else
                 span.video__commnet--number
-                    span#jsCommentNumber=video.comments.length
+                    span#jsCommentNumber=comments.length
                     |   comments    
             form.add__comment#jsAddComment
-                input(name="comment" type="text" placeholder="Add a comment")
+                if loggedUser
+                    .comments__user(style={'background-image':`url(${loggedUser.avatarUrl})`})
+                input(name="comment" type="text" placeholder="Add a comment" maxlength="50")
             ul.video__comments-list#jsCommentList
-                each comment in video.comments.reverse()
-                    li
-                        span=comment.text
+                each comment in comments
+                    +comment({
+                        username: comment.creator.name,
+                        timestamp: comment.createdAt,
+                        content: comment.text,
+                        authorId: comment.creator._id,
+                        authorAvatar: comment.creator.avatarUrl,
+                        commentId: comment._id
+                    })
 
