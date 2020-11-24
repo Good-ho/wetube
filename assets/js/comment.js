@@ -46,10 +46,10 @@ const destroyComment = (element) => {
 const deleteComment = async (event) => {
   const { target } = event;
   const btnParent = target.parentNode;
-  const videoId = btnParent.getAttribute("data-id");
+  const commentId = btnParent.getAttribute("data-id");
   const { status } = await axios({
     method: "delete",
-    url: `/api/${videoId}/delete`,
+    url: `/api/${commentId}/delete`,
   });
   if (status === 200) {
     decreaseNumber();
