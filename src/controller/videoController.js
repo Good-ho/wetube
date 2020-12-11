@@ -1,5 +1,6 @@
 import routes from "../routes";
 import Video from "../models/Video";
+import User from "../models/User";
 import Comment from "../models/Comment";
 
 export const home = async (req, res) => {
@@ -60,11 +61,18 @@ export const videoDetail = async (req, res) => {
 
   try {
     const video = await Video.findById(id).populate("creator");
-    const comments = await Comment.find({ creator: video.creator.id })
-      .populate("creator")
+
+    const { comments } = await Video.findById(id)
+      .populate({ path: "comments", populate: { path: "creator" } })
       .sort({ createdAt: -1 });
-    // console.log(video);
-    res.render("videoDetail", { pageTitle: `${video.title}`, video, comments });
+
+    console.log(video.creator.avatarUrl);
+
+    res.render("videoDetail", {
+      pageTitle: `${video.title}`,
+      video,
+      comments,
+    });
   } catch (error) {
     console.log(error);
     res.redirect(routes.home);
@@ -77,12 +85,13 @@ export const getEditVideo = async (req, res) => {
   } = req;
   try {
     const video = await Video.findById(id);
-    if (video.creator !== req.user.id) {
+    if (String(video.creator) !== req.user.id) {
       throw Error();
     } else {
       res.render("editVideo", { pageTitle: `Edit ${video.title}`, video });
     }
   } catch (error) {
+    console.log(error);
     res.redirect(routes.home);
   }
 };
@@ -107,7 +116,7 @@ export const deleteVideo = async (req, res) => {
 
   try {
     const video = await Video.findById(id);
-    if (video.creator !== req.user.id) {
+    if (String(video.creator) !== req.user.id) {
       throw Error();
     } else {
       await Video.findOneAndRemove({ _id: id });

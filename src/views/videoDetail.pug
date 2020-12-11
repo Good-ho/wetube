@@ -32,7 +32,7 @@ block content
                     |   comments    
             form.add__comment#jsAddComment
                 if loggedUser
-                    .comments__user(style={'background-image':`url(${loggedUser.avatarUrl})`})
+                    .comments__user(style={'background-image':`url(${video.creator.avatarUrl})`})                        
                 input(name="comment" type="text" placeholder="Add a comment" maxlength="50")
             ul.video__comments-list#jsCommentList
                 each comment in comments

@@ -23,6 +23,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "get-blob-duration": "^1.1.2",
     "helmet": "^4.1.1",
     "javascript-time-ago": "^2.3.3",
     "mongoose": "^5.10.11",
@@ -42,9 +43,14 @@
     "webpack-cli": "^4.1.0"
   },
   "scripts": {
-    "dev:server": "nodemon --exec babel-node init.js --delay 2 --ignore 'scss",
-    "dev:assets": "cross-env WEBPACK_ENV=development webpack -w",
-    "build:assets": "cross-env WEBPACK_ENV=production webpack"
+    "dev:server": "nodemon --exec babel-node src/init.js --delay 2 --ignore 'scss",
+    "dev:assets": "cd src && cross-env WEBPACK_ENV=development webpack -w",
+    "build:assets": "cd src && cross-env WEBPACK_ENV=production webpack",    
+    "build:server": "babel src --out-dir build --ignore 'src/assets','src/static','src/webpack.config.js'",  
+    "copyAll": "xcopy /s /y \"src/static\" \"build/static\" && xcopy /s /e \"src/views\" \"build/views\" && xcopy /s /y \"src/uploads\" \"build/uploads\"",
+    "build": "npm run build:server && npm run build:assets && npm run copyAll",
+    "prebuild": "rd /s /q \"build\"",
+    "start":"node build/init.js"
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
