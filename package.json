@@ -50,7 +50,8 @@
     "copyAll": "xcopy /s /y \"src/static\" \"build/static\" && xcopy /s /e \"src/views\" \"build/views\"",
     "build": "npm run build:server && npm run build:assets && npm run copyAll",
     "prebuild": "rd /s /q \"build\"",
-    "start":"node build/init.js"
+    "start":"node build/init.js",
+    "prestart" : "npm run build"
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
