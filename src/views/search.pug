@@ -3,7 +3,7 @@ include mixins/videoBlock
 
 block content
     .search__header
-        h3 Searching for #{searchingBy}
+        h1 Searching for #{searchingBy}
     .search__videos
         if videos.length === 0
             h5 No Videos Find
@@ -11,6 +11,10 @@ block content
             +videoBlock({
                 title:item.title,
                 views:item.views,
-                videoFile:item.videoFile,
-                id:item.id
+                videoFile:item.fileUrl,
+                id:item.id,
+                creator:item.creator.id,
+                avatarUrl:item.creator.avatarUrl,
+                createAt:item.createAt,
+                name:item.creator.name
             })

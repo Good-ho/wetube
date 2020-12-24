@@ -7,3 +7,14 @@
   background-size: cover;
   background-position: center center;
 }
+
+@mixin smallUserAvatar {
+  height: 40px;
+  min-width: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba($color:#ffffff, $alpha: 0.3);
+  background-color: $black;
+  background-size: cover;
+  background-position: center center;
+}

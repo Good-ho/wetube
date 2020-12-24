@@ -1,5 +1,5 @@
 .header {
-  background-color: $red;
+  background-color: $statusbar-color;
   margin-bottom: 50px;
   .header__wrapper {
     padding: 5px 0px;
@@ -11,8 +11,18 @@
     align-items: center;
     .header__column {
       i {
-        color: white;
+        color: $red;
         font-size: 40px;
+      }
+      &:nth-child(1) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        a {
+          margin-left: 10px;
+          font-size: 25px;
+          align-items: center;
+        }
       }
       &:nth-child(2) {
         width: 100%;
@@ -27,7 +37,15 @@
         font-weight: 600;
         text-transform: uppercase;
         li:not(:last-child) {
-          margin-right: 15px;
+          margin-right: 25px;
+        }
+        li{
+          padding: 10px;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: 10px;
+        }
+        li:hover{
+          background-color: $dark-red;
         }
       }
       form {

@@ -10,11 +10,17 @@
       width: 200px;
       margin-bottom: 10px;
     }
-    .video__title,
+    .video__title{
+      display: block;
+      margin-bottom: 20px;
+      font-size: 30px;
+      font-weight: 600;
+    }
     .video__views,
     .video__description {
       display: block;
       margin-bottom: 15px;
+      color: $view-color;
     }
     .video__author {
       a {

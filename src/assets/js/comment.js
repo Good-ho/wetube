@@ -82,7 +82,7 @@ const handleSubmit = (event) => {
 
 function init() {
   addCommentForm.addEventListener("submit", handleSubmit);
-  currentAvatar = addCommentForm.querySelector(".comments__user");
+  currentAvatar = addCommentForm.querySelector(".comment__user");
   deleteCommentBtn = document.querySelectorAll(".canDelete");
   Array.from(deleteCommentBtn).forEach((button) =>
     button.addEventListener("click", deleteComment)

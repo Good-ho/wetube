@@ -32,10 +32,10 @@ block content
                     |   comments    
             form.add__comment#jsAddComment
                 if loggedUser
-                    .comments__user(style={'background-image':`url(${video.creator.avatarUrl})`})                        
+                    .comment__user(style={'background-image':`url(${video.creator.avatarUrl})`})                        
                 input(name="comment" type="text" placeholder="Add a comment" maxlength="50")
             ul.video__comments-list#jsCommentList
-                each comment in comments
+                each comment in comments.reverse()
                     +comment({
                         username: comment.creator.name,
                         timestamp: comment.createdAt,
